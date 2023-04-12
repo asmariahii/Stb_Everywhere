@@ -1,0 +1,51 @@
+
+.uk-modal-body{
+    color: black;
+}
+.uk-modal-title{
+    color: white;
+    font-size: medium;
+    
+}
+.uk-modal-header
+{background-color: rgb(15, 15, 82);}
+
+.form-check form-check-inline.form-check-input.form-check-label{
+    color: black;
+}
+.price-range label {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .price-range input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 120px;
+  }
+  
+  .price-range input[type="number"]:last-child {
+    margin-right: 0;
+  }
+  .date-range label {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .date-range input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 150px;
+  }
+  
+  .date-range input[type="date"]:last-child {
+    margin-right: 0;
+  }
+  
+  

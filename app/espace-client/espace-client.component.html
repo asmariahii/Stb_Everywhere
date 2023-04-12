@@ -1,0 +1,229 @@
+
+   <!-- Body -->
+   <body 
+   
+   style="background-color: #003d86">
+   
+      <!-- Google Tag Manager (noscript)-->
+      <noscript>
+         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+      </noscript>
+      <!-- Page loading spinner -->
+ 
+      <!-- Page wrapper for sticky footer -->
+      <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+      <main class="page-wrapper" style="background-color: #003d86;">
+         <!-- Navbar -->
+         <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+         <header class="header navbar navbar-expand-lg position-absolute navbar-sticky" style="background-color: #002148">
+            <div class="container px-3">
+               <a  routerLink="/home" class="navbar-brand pe-3">
+               <img src="assets/logo_stb.png" width="47" alt="" >
+               STB Everywhere
+               </a>
+               <div id="navbarNav" class="offcanvas offcanvas-end">
+                  <div class="offcanvas-header border-bottom">
+                     <h5 class="offcanvas-title">Menu</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-header border-top">
+                     <a href="" class="btn btn-info w-100 btn-round" target="_blank" rel="noopener">
+                     &nbsp;Se connecter
+                     </a>
+                     <button type="button" class="btn btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modalId">
+                     Commencez
+                     </button>
+                  </div>
+
+               </div>
+               
+               <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <button type="button" class="btn btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modalId">
+               Mon compte
+               </button>
+            </div>
+
+         </header>
+
+         <section class="container pt-5">
+
+        <div class="row" >
+
+
+          <router-outlet></router-outlet>
+
+          <!-- Sidebar (User info + Account menu) -->
+          <aside class="col-lg-3 col-md-4 border-end pb-5 mt-n5">
+
+            <div class="position-sticky top-0">
+
+              <div class="text-center pt-5">
+                <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
+                  <img src="assets/img/avatar/18.jpg" class="d-block rounded-circle" width="120" alt="John Doe">
+                  <button type="button" class="btn btn-icon btn-light bg-white btn-sm border rounded-circle shadow-sm position-absolute bottom-0 end-0 mt-4" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Change picture">
+                    <i class="bx bx-refresh"></i>
+                  </button>
+                </div>
+
+                <h2 class="h5 mb-1">John Doe</h2>
+                <p class="mb-3 pb-3">jonny@email.com</p>
+
+                
+                <div id="account-menu" class="list-group list-group-flush d-md-block collapse" style="">
+
+                  <a routerLink="/account" routerLinkActive="" class="list-group-item list-group-item-action d-flex align-items-center ">
+                    <i class="" ></i>
+                    Consultation compte
+                  </a>
+
+                  <a href="account-security.html" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class=""></i>
+                    Compte TF Bank
+                  </a>
+                  <a routerLink="/ChequeForm"routerLinkActive="" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class=""></i>
+                    Demande chéquier
+                  </a>
+                  <a href="account-messages.html" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class=""></i>
+                    Demande Wallet
+                  </a>
+                  <a routerLink="/cartes"routerLinkActive="" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class=""></i>
+                    Mes Cartes
+                  </a>
+                  <a routerLink="/CardForm"routerLinkActive="" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class=""></i>
+                    Demande d'une carte bancaire
+                  </a>
+                  <a href="account-collections.html" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class=""></i>
+                    Fiche KYC
+                  </a>
+                  <a routerLink="/edit" routerLinkActive="" id="btn" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="" ></i>
+                    Account details
+                  </a>
+                  <a href="account-signin.html" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="bx bx-log-out fs-xl opacity-60 me-2"></i>
+                    Sign Out
+                    
+                  </a>
+                </div>
+
+              </div>
+              
+            </div>
+
+          </aside>
+
+         <!-- Account details -->
+         <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
+
+          <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
+            <h1 class="h2 pt-xl-1 pb-3"></h1>
+
+            <!-- compte special -->
+          
+             
+                         
+                  
+                  
+                        
+                  
+                          
+         
+      
+    
+      
+
+
+       
+    
+          <div _ngcontent-hjx-c60="" class="col-12"><h1 _ngcontent-hjx-c60="" class="pb-4">Mes Services</h1>
+            <div _ngcontent-hjx-c60="" class="row row-cols-1 row-cols-md-2"><div _ngcontent-hjx-c60="" routerlink="RequestAccount" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 me-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/happy.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Consultation compte <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">En un simple clic, vous pouvez ouvrir différents types de comptes&nbsp;bancaires selon votre besoin et en toute sécurité à distance, soit via votre ordinateur, smartphone ou tablette !&nbsp; </p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestAccountTFB" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 me-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/compte.png" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Etudiant en France :Pack Student TF BANK <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Le Pack Student TFBANK est un pack offert en collaboration avec la STB et TFBANK dédiés aux étudiants Tunisiens en France âgés entre 18 et 26 ans </p></div></a></div><!----><div _ngcontent-hjx-c60="" routerlink="RequestAccountEmployeeTFB" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 me-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/compte.png" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Employee en France :Pack Elyssa TF BANK <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Le Pack Elyssa TF BANK est un pack offert en collaboration avec la STB et TFBANK dédiés aux salariés Tunisiens entre 18 ans et 60 ans ayant décroché un CDI en France. </p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestAccount" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/cashback.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Demande wallet <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Faciles à utiliser, les wallets sont des portefeuilles électroniques vous permettent d’effectuer des paiements, des transferts et des retraits sans cartes. Vos informations de paiement sont enregistrées de façon sécurisée. Ainsi, votre argent est protégé même en cas de perte ou de vol de votre smartphone. Cliquez ici pour demander votre wallet dès maintenant !&nbsp;</p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestCheck" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/tasks.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Demande chéquier&nbsp; <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Vous possédez un compte bancaire et vous souhaitez disposer d'un carnet de chèques. Vous pouvez passer votre demande en toute&nbsp;sécurité auprès de chez-vous,&nbsp;En un simple clic ! </p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestCard" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/payments.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Demande d'une carte bancaire&nbsp; <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Vous souhaitez une solution de paiement et de retrait pratique et moderne ?&nbsp; c'est simple, il suffit d'initier votre demande de carte bancaire aupres de chez vous&nbsp;&nbsp;en toute securité&nbsp;! </p></div></a></div></div></div>
+       </div>
+    </div>
+          
+   
+    
+    
+    
+
+             
+
+         
+      <!-- Footer -->
+      <footer class="footer pt-5 pb-4 pb-lg-5 mt-4" style="background-color: #002148">
+         <div class="container text-center pt-lg-3">
+            <div class="navbar-brand justify-content-center text-dark mb-2 mb-lg-4">
+               <img src="assets/logo_stb.png" class="me-2" width="60" alt="Silicon">
+               <span class="fs-4">STB 4 All</span>
+            </div>
+            <ul class="nav justify-content-center pt-3 pb-4 pb-lg-5">
+               <li class="nav-item"><a href="stb_ebank.html#top" class="nav-link">Acceuil</a></li>
+               <li class="nav-item"><a href="stb_ebank.html#services" class="nav-link">Services</a></li>
+               <li class="nav-item"><a href="stb_ebank.html#retail" class="nav-link">Retail</a></li>
+               <li class="nav-item"><a href="stb_ebank.html#corporate" class="nav-link">Corporate</a></li>
+               <li class="nav-item"><a href="stb_ebank.html#ccm" class="nav-link">Comment ça marche</a></li>
+               <li class="nav-item"><a href="stb_ebank.html#top" class="nav-link">Nos Offres</a></li>
+            </ul>
+            <div class="d-flex justify-content-center pt-4 mt-lg-3">
+               <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-facebook mx-2">
+               <i class="bx bxl-facebook"></i>
+               </a>
+               <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-instagram mx-2">
+               <i class="bx bxl-instagram"></i>
+               </a>
+               <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-twitter mx-2">
+               <i class="bx bxl-twitter"></i>
+               </a>
+               <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-youtube mx-2">
+               <i class="bx bxl-youtube"></i>
+               </a>
+            </div>
+         </div>
+      </footer>
+      <!-- Back to top button -->
+      <a href="stb_ebank.html#top" class="btn-scroll-top" data-scroll>
+      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+      <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+      </a>
+      <!-- Vendor Scripts -->
+      <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+      <script src="assets/vendor/rellax/rellax.min.js"></script>
+      <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+      <!-- Main Theme Script -->
+      <script src="assets/js/theme.min.js"></script>
+      <script>
+         function includeHTML() {
+           var z, i, elmnt, file, xhttp;
+           /* Loop through a collection of all HTML elements: */
+           z = document.getElementsByTagName("*");
+           for (i = 0; i < z.length; i++) {
+             elmnt = z[i];
+             /*search for elements with a certain atrribute:*/
+             file = elmnt.getAttribute("w3-include-html");
+             if (file) {
+               /* Make an HTTP request using the attribute value as the file name: */
+               xhttp = new XMLHttpRequest();
+               xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4) {
+                   if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                   if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                   /* Remove the attribute, and call this function once more: */
+                   elmnt.removeAttribute("w3-include-html");
+                   includeHTML();
+                 }
+               } 
+               xhttp.open("GET", file, true);
+               xhttp.send();
+               /* Exit the function: */
+               return;
+             }
+           }
+         }
+      </script>

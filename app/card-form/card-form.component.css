@@ -1,0 +1,31 @@
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  label {
+    margin-top: 1rem;
+  }
+  
+  input,
+  select {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  button[type="submit"] {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
