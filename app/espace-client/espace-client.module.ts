@@ -10,6 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { CartesComponent } from '../cartes/cartes.component';
 import { CardFormComponent } from '../card-form/card-form.component';
 import { ChequeFormComponent } from '../cheque-form/cheque-form.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,15 @@ import { ChequeFormComponent } from '../cheque-form/cheque-form.component';
   imports: [
     CommonModule,
     EspaceClientRoutingModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule,
+
+
+    
   ],
   exports: [EspaceClientComponent] 
 
