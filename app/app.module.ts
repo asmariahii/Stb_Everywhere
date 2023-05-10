@@ -26,9 +26,8 @@ import { MatListModule } from '@angular/material/list';
 import { MaterialModule } from './material/material/material.module';
 import { MatCardModule } from '@angular/material/card';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { ProfilComponent } from './profil/profil.component';
 import { AuthService } from './shared/auth.service';
-import { UserService } from './services/user.service';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -40,7 +39,8 @@ import { UserService } from './services/user.service';
     AppComponent,
     HomeComponent,
     FooterComponent,
-    ProfilComponent,
+    
+    RegisterComponent,
     
   ],
   imports: [
@@ -72,7 +72,6 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     AuthService,
-    UserService
   ],
   bootstrap: [AppComponent]
 })

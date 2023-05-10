@@ -1,73 +1,31 @@
-<div class="container">
-    <div class="row mt-3">
-      <div class="col-12 col-lg-4 offset-lg-4">
-        <mat-card appearance="outlined" class="text-center">
-          <mat-card-header>
-            <mat-card-title style="color: black;"> Login </mat-card-title>
-            <img mat-card-avatar src="assets/logo_stb.png" />
-          </mat-card-header>
-          <mat-card-content>
-           <form #loginForm="ngForm" class="mt-3" (ngSubmit)="onLogin(loginForm)">
-            <p>
-                <mat-form-field class="w-75" appearance="outline">
-                <mat-label >Email</mat-label>
-                <input email 
-                ngModel
-                 matInput
-                  required
-                   id="email" 
-                  name="email" 
-                  type="email"
-                  #email="ngModel"
-                  
-                  />
-                  <mat-error *ngIf="email.invalid && email.errors?.['required']">
-                     Email is <strong>required.</strong>
-                    </mat-error>
-                  <mat-error *ngIf="email.invalid && email.errors?.['email']">
-                    Please enter a valid email address
-                  </mat-error>   
 
+<div class="uk-position-center uk-overlay uk-overlay-default">
+        
+        
+  <form #f="ngForm" (ngSubmit)="login(f)">
 
-
-            </mat-form-field>
-            </p>
-
-
-            <p>
-                <mat-form-field class="w-75" appearance="outline">
-                <mat-label >Password</mat-label>
-                <input password 
-                ngModel
-                 matInput
-                  required 
-                  minlength="5"
-                  id="password" 
-                  name="password" 
-                  type="password"
-                  #password="ngModel"
-                  autocomplete="new-password"/>
-
-                  <mat-error *ngIf="password.invalid && password.errors?.['required']">
-                    Password is <strong>required.</strong>
-                                   </mat-error>
-                 <mat-error *ngIf="password.invalid && password.errors?.['minlength']">
-                    Password must be atleast 5 characters
-                 </mat-error>   
-            </mat-form-field>
-            </p>
-
-            <button 
-            type="submit"
-            color="primary" mat-raised-button
-            [disabled]="loginForm.invalid"
-            >
-                Login
-            </button>
-
-           </form>
-          </mat-card-content>
-        </mat-card>
+  <div class="uk-margin">
+      <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: user"></span>
+          <input class="uk-input" type="text" #email="ngModel" ngModel name="email">
       </div>
-    </div>
   </div>
+
+  <div class="uk-margin">
+      <div class="uk-inline">
+          <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+          <input class="uk-input" type="password"  #password="ngModel" ngModel name="password">
+      </div>
+  </div>
+  <button type="submit" class="btn btn-success" style="width: 100%;">Login</button>
+  <div class="alert alert-danger" *ngIf="messageError">{{messageError}}</div>
+
+  <br>
+  <br>
+  <button type="submit" class="btn btn-info" style="width: 100%;">Forget</button>
+
+</form>
+
+
+
+</div>

@@ -38,25 +38,29 @@
                <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
-               <button type="button" class="btn btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modalId">
-               Mon compte
+               <button (click)="logout()" type="button" class="btn btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modalId">
+                Logout
                </button>
+
               </div>          </header>
            
-              
+
+
+
+
               
 
               <section class="container pb-2 pb-md-4 pb-lg-5 mb-3 mt-5">
                 <div class="card border-0 shadow-sm overflow-hidden mb-4" style="margin-top: 6%;">
                   <div class="row g-0">
                     <div class="col-md-4 image-container">
-                      <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" class="img-fluid" alt="image" style="max-width: 70%;">
+                      <img [src]="dataProfile.image" class="img-fluid" alt="image" style="max-width: 70%;">
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
                         <div class="fs-sm text-muted mb-1">Sept 14, 2022</div>
                         <h2 class="h4 pb-1 mb-2">
-                          <a href="#">Mohamed Mokrani</a>
+                          <a href="#">{{ dataProfile.flName }}</a>
                         </h2>
                         <p>Compte : 10203066102985478860</p>
                         <p>Telephone:</p>

@@ -1,50 +1,32 @@
-import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  user: Observable<firebase.User | null>;
 
-  user: Observable<firebase.default.User | null>;
-
-  constructor(private fireauth : AngularFireAuth, private router : Router) {
-    this.user = fireauth.authState;
+  constructor(private fa: AngularFireAuth, private router: Router) {
+    this.user = this.fa.user;
   }
 
-  // login method
-  login(email : string, password : string) {
-    this.fireauth.signInWithEmailAndPassword(email,password).then( () => {
-        localStorage.setItem('token','true');
-        this.router.navigate(['home']);
-    }, err => {
-        alert(err.message);
-        this.router.navigate(['/login']);
-    })
+  signUp(email: string, password: string) {
+    return this.fa.createUserWithEmailAndPassword(email, password);
   }
 
-  // register method
-  register(email : string, password : string) {
-    this.fireauth.createUserWithEmailAndPassword(email, password).then( res => {
-      alert('Registration Successful');
-      this.router.navigate(['/login']);
-    }, err => {
-      alert(err.message);
-      this.router.navigate(['/register']);
-    })
-
+  signIn(email: string, password: string) {
+    return this.fa.signInWithEmailAndPassword(email, password);
   }
 
-  // sign out
-  logout() {
-    this.fireauth.signOut().then( () => {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    }, err => {
-      alert(err.message);
-    })
+ 
+  signOut() {
+    return this.fa.signOut().then(() => {
+      this.router.navigate(['/']); // Navigate to home page after sign out
+    });
   }
-
 }
