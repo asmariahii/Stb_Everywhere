@@ -1,60 +1,19 @@
-
-                <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-                    <h2>Demande de chéquier</h2>
-                  
-                    <label>
-                      Nom :
-                      <input type="text" name="nom" ngModel required>
-                    </label>
-                  
-                    <label>
-                      Prénom :
-                      <input type="text" name="prenom" ngModel required>
-                    </label>
-                  
-                    <label>
-                      Adresse :
-                      <input type="text" name="adresse" ngModel required>
-                    </label>
-                  
-                    <label>
-                      Nombre de chéquiers :
-                      <select name="nombreChequiers" ngModel required>
-                        <option value="" disabled selected>Choisissez le nombre de chéquiers</option>
-                        <option *ngFor="let n of nombreChequiersOptions" [value]="n">{{ n }}</option>
-                      </select>
-                    </label>
-                  
-                    <button type="submit">Envoyer</button>
-                  </form>
-                  
-              
-
-                                          
+<h2>Demande de chéquier</h2>
 
 
+<p *ngIf="messageSent">{{ message }}</p>
 
+<form *ngIf="Uid && !messageSent && !demandeEnCours" #chequeForm="ngForm" (ngSubmit)="onSubmit(chequeForm)">
+  <div>
+    <label for="nombreChequiers">Nombre de chéquiers</label>
+    <select name="nombreChequiers" id="nombreChequiers" [(ngModel)]="nombreChequiers" required>
+      <option value="" disabled>Choisissez le nombre de chéquiers</option>
+      <option *ngFor="let nombre of nombreChequiersOptions" [value]="nombre">{{ nombre }}</option>
+    </select>
+  </div>
+  
+  <button type="submit" [disabled]="messageSent">Envoyer la demande</button>
+</form>
 
-
-
-                                           
-                                       
-
-
-                                   
-
-                    
-
-
-
-                   
-
-
-
-
-    
-      
-      
-    
-
+<p *ngIf="Uid && !messageSent && demandeEnCours">Votre demande est : {{ dataProfile.demande}}</p>
 

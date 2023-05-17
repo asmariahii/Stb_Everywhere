@@ -10,6 +10,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class RegisterComponent implements OnInit {
 
+  
   constructor(
     private sa:AuthService, 
     private route :Router,
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    
   }
 
   register(f: any){
@@ -27,9 +29,17 @@ export class RegisterComponent implements OnInit {
         this.fs.collection("users").doc(user.user?.uid ?? '').set({
           flName: data.flName,
           email: data.email,
-          bio: data.bio,
-          uid: user.user?.uid ?? '',
+          telephone: data.telephone,
+          adresse: data.adresse,
+          accountType: data.accountType, // Add accountType field
+          image:'https://previews.123rf.com/images/salamatik/salamatik1801/salamatik180100019/92979836-ic%C3%B4ne-de-visage-anonyme-de-profil-personne-silhouette-grise-avatar-par-d%C3%A9faut-masculin-photo.jpg',
+          demande: '' ,
+          rib: '',
+  
+         uid: user.user?.uid ?? '',
+         
         })
+        
         .then(() => {
           this.route.navigate(['/login'])
         })

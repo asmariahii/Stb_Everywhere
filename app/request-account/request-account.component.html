@@ -22,21 +22,21 @@
                                 
                             </div>
                         </div> -->
-<div class="w-100" *ngFor="let c of listAccount">
+<div class="w-100" >
     <div _ngcontent-avu-c59="" class="card border-0 shadow-sm overflow-hidden mb-4 p-0">
         <div _ngcontent-avu-c59="" class="row g-0">
             <div _ngcontent-avu-c59="" class="col-8">
                 <div _ngcontent-avu-c59="" class="card-body">
                     
                     <h2 _ngcontent-avu-c59="" class="h4 pb-1 mb-2">
-                        <a class="m-0" routerLink="/details/{{c.accountId}}" >{{c.typeCompte}}</a>
+                        <a class="m-0" routerLink="/details/" >Compte {{ dataProfile.accountType}}</a>
                     </h2>
-                    <p _ngcontent-avu-c59="" class="m-0">RIB : {{c.rib}} </p>
+                    <p _ngcontent-avu-c59="" class="m-0">RIB : {{ dataProfile.rib}}  </p>
                 </div>
             </div><!---->
             <div _ngcontent-avu-c59="" class="col-4 selfCenter text-center textShadow"
-                style="color: green;"><b _ngcontent-avu-c59=""><span _ngcontent-avu-c59=""
-                        class="text-bold" style="font-size: 30px;">{{c.solde}}  </span> TND</b></div>
+                style="color: green;"><b _ngcontent-avu-c59="">{{ dataProfile.solde}}<span _ngcontent-avu-c59=""
+                        class="text-bold" style="font-size: 30px;"> </span> TND</b></div>
                         
             <!---->
         </div>

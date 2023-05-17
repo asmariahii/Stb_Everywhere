@@ -1,57 +1,67 @@
-<div class="uk-position-center uk-overlay uk-overlay-default">
-        
-        
-    <form #f="ngForm" (ngSubmit)="register(f)">
-        <div class="uk-margin">
-            <div class="uk-inline">
-                <span class="uk-form-icon" uk-icon="icon: happy"></span>
-                <input class="uk-input" type="text" name="flName" #flName="ngModel" ngModel required>
-                <p class="alert alert-danger" *ngIf="flName.errors?.['required']&& flName.touched">this input firstName and lastName are required</p>                
-
-            </div>
-    </div>    
-    <div class="uk-margin">
-        <div class="uk-inline">
-        
-            <textarea class="uk-input" cols="26" rows="10" placeholder="Bio" name="bio" #bio="ngModel" ngModel required></textarea>
-            <p class="alert alert-danger" *ngIf="bio.errors?.['required'] && bio.touched">this input bio is required</p>                
-
-
-        </div>
+<div class="container">
+    <div class="row mt-10">
+      <div class="col-12 col-lg-4 offset-lg-4">
+        <mat-card appearance="outlined" class="text-center">
+          <mat-card-header>
+            <mat-card-title style="color:black" class="mat-card-title">Create Account</mat-card-title>
+            <img mat-card-avatar src="assets/logo_stb.png" />
+          </mat-card-header>
+          <mat-card-content>
+            <form #f="ngForm" (ngSubmit)="register(f)">
+              <mat-form-field appearance="fill">
+                <mat-label>Nom et Prénom</mat-label>
+                <input matInput type="text" name="flName" #flName="ngModel" ngModel required>
+                <mat-error *ngIf="flName.errors?.['required'] && flName.touched">Le nom et prénom sont obligatoires.</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill">
+                <mat-label>Numéro de téléphone</mat-label>
+                <input matInput type="tel" placeholder="Phone Number" name="telephone" #telephone="ngModel" ngModel pattern="^\+216[0-9]{7,8}$" required>
+                <mat-error *ngIf="telephone.errors?.['required'] && telephone.touched">Le numéro de téléphone est obligatoire.</mat-error>
+                <mat-error *ngIf="telephone.errors?.['pattern'] && telephone.touched">Le numéro de téléphone doit être au format +216xxxxxxxx ou +216xxxxxxxxx</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill">
+                <input matInput placeholder="Adresse" name="adresse" #adresse="ngModel" ngModel required>
+                <mat-error *ngIf="adresse.errors?.['required'] && adresse.touched">Le champ adresse est obligatoire.</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill">
+                <mat-label>Choisissez le type de compte :</mat-label>
+                <select matNativeControl name="accountType" #accountType="ngModel" ngModel required>
+                  <option value="" disabled selected>Choisissez le type de compte</option>
+                  <option value="epargne">Compte épargne</option>
+                  <option value="chequier">Compte chéquier</option>
+                </select>
+                <mat-error *ngIf="accountType.errors?.['required'] && accountType.touched">Veuillez choisir un type de compte.</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" name="email" #email="ngModel" ngModel required email>
+                <mat-error *ngIf="email.errors?.['required'] && email.touched">L'e-mail est obligatoire.</mat-error>
+                <mat-error *ngIf="email.errors?.['email'] && email.touched">L'e-mail doit être au format valide.</mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput type="password" name="password" #password="ngModel" ngModel required minlength="8">
+                <mat-error *ngIf="password.errors?.['required'] && password.touched">Le mot de passe est obligatoire.</mat-error>
+                <mat-error *ngIf="password.errors?.['minlength'] && password.touched">Le mot de passe doit contenir au moins 8 caractères.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Confirm password</mat-label>
+                <input matInput type="password" name="confirmPassword" #confirmPassword="ngModel" ngModel required minlength="8">
+                <mat-error *ngIf="confirmPassword.errors?.['required'] && confirmPassword.touched">Le champ de confirmation du mot de passe est obligatoire.</mat-error>
+                <mat-error *ngIf="confirmPassword.errors?.['minlength'] && confirmPassword.touched">Le champ de confirmation du mot de passe doit contenir au moins 8 caractères.</mat-error>
+                <mat-error *ngIf="password.value !== confirmPassword.value && confirmPassword.touched">Les mots de passe ne correspondent pas.</mat-error>
+              </mat-form-field>
+      
+              <button type="submit" mat-raised-button color="primary" style="width: 100%;">Register</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
-    <div class="uk-margin">
-        <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-            <input class="uk-input" type="text" name="email" #email="ngModel" ngModel email required>
-            <p class="alert alert-danger" *ngIf="email.errors?.['email']&& email.touched">this input email is required</p>
-            <p class="alert alert-danger" *ngIf="email.errors?.['email']&& email.touched">this input should be email</p>
-        </div>
-    </div>
-
-    <div class="uk-margin">
-        <div class="uk-inline">
-            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-            <input class="uk-input" type="password" name="password" #password="ngModel" ngModel required minlength="8">
-            <p class="alert alert-danger" *ngIf="password.errors?.['minlength'] && password.touched">this input password is required</p>
-    <p class="alert alert-danger" *ngIf="password.errors?.['minlength'] && password.touched">this input password should +8 caratere</p>
-        </div>
-    </div>
-    <div class="uk-margin">
-        <div class="uk-inline">
-            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-            <input class="uk-input" type="password" name="confirmPassword" #confirmPassword="ngModel" ngModel required minlength="8">
-            <p class="alert alert-danger" *ngIf="confirmPassword.errors?.['minlength'] && confirmPassword.touched
-            ">this input confirmpassword is required</p>
-            <p class="alert alert-danger" *ngIf="password.value!==confirmPassword.value && password.touched">not equal</p>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-success" style="width: 100%;">Register</button>
-    <br>
-    <br>
-
-
-</form>
-
-
-
-</div>
+</div>      
+  

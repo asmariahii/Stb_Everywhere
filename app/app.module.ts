@@ -28,6 +28,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AuthService } from './shared/auth.service';
 import { RegisterComponent } from './register/register.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -65,6 +67,11 @@ import { RegisterComponent } from './register/register.component';
     MatCardModule,
     EspaceClientModule,
     AngularFireDatabaseModule,
+    BrowserModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
 
 
 

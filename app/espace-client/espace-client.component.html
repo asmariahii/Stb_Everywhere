@@ -62,22 +62,48 @@
                         <h2 class="h4 pb-1 mb-2">
                           <a href="#">{{ dataProfile.flName }}</a>
                         </h2>
-                        <p>Compte : 10203066102985478860</p>
-                        <p>Telephone:</p>
-                        <p>Email:</p>       
+                        <p>Telephone:{{ dataProfile.telephone}}</p>
+                        <p>Email : {{ dataProfile.email}}</p>
+                        <p>adresse:{{ dataProfile.adresse}}</p>       
                         <div class="d-flex">
-                          <a href="#" class="btn btn-outline-secondary px-3 px-lg-4 me-3">
+                          <a href="" class="btn btn-outline-secondary px-3 px-lg-4 me-3">
                             <i class="bx bx-edit fs-xl me-xl-2"></i>
                             <span class="d-none d-xl-inline">Modifier vos information</span>
+                            
                           </a>
-                     
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
+                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">Update Image</button>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                          
+                          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <input type="file" accept=".jpg,.png" (change)="uploadImage($event)">
+                                    <div *ngIf="uploadProgress !== undefined">
+                                      <p>Upload Progress: {{ uploadProgress }}%</p>
+                                      <progress id="js-progressbar" class="uk-progress" [value]="uploadProgress" max="100"></progress>
+                                    </div>
+                                    <div *ngIf="uploadCompleted" class="alert alert-success">Upload Successful!</div>
+                                  </form>
+                                  
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <!-- Add any additional footer content here if needed -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
      <section class="container pt-5">
       <div class="row">
         <button type="button" class="btn btn-icon btn-light bg-white btn-sm border rounded-circle shadow-sm position-absolute bottom-0 end-0 mt-4" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Change picture">
