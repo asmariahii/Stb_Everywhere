@@ -67,11 +67,9 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     EspaceClientModule,
     AngularFireDatabaseModule,
-    BrowserModule,
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatListModule,
 
 
 
@@ -87,4 +85,3 @@ export class AppModule {
 }
 
 export { EspaceClientModule };
-

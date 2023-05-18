@@ -1,0 +1,160 @@
+<p>espace-admin works!</p>
+<body 
+   
+   style="background-color: #003d86">
+   
+      <!-- Google Tag Manager (noscript)-->
+      <noscript>
+         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+      </noscript>
+      <!-- Page loading spinner -->
+ 
+      <!-- Page wrapper for sticky footer -->
+      <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+      <main class="page-wrapper" style="background-color: #003d86;">
+         <!-- Navbar -->
+         <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+         <header class="header navbar navbar-expand-lg position-absolute navbar-sticky" style="background-color: #002148">
+            <div class="container px-3">
+               <a  routerLink="/home" class="navbar-brand pe-3">
+               <img src="assets/logo_stb.png" width="47" alt="" >
+               STB Everywhere
+               </a>
+               <div id="navbarNav" class="offcanvas offcanvas-end">
+                  <div class="offcanvas-header border-bottom">
+                     <h5 class="offcanvas-title">Menu</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-header border-top">
+                     <a href="" class="btn btn-info w-100 btn-round" target="_blank" rel="noopener">
+                     &nbsp;Se connecter
+                     </a>
+                     <button type="button" class="btn btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modalId">
+                     Commencez
+                     </button>
+                  </div>
+
+               </div>
+               
+               <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <button  type="button" class="btn btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modalId">
+                Logout
+               </button>
+
+              </div>          </header>
+           
+
+
+
+
+              
+
+              <section class="container pb-2 pb-md-4 pb-lg-5 mb-3 mt-5">
+                <div class="card border-0 shadow-sm overflow-hidden mb-4" style="margin-top: 6%;">
+                  <div class="row g-0">
+                    <div class="col-md-4 image-container">
+                      <img class="img-fluid" alt="image" style="max-width: 70%;">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <div class="fs-sm text-muted mb-1">Sept 14, 2022</div>
+                        <h2 class="h4 pb-1 mb-2">
+                          <a href="#">admin</a>
+                        </h2>
+                        <p>Telephone:</p>
+                        <p>Email :</p>
+                        <p>adresse:</p>       
+                        <div class="d-flex">
+                          <a href="" class="btn btn-outline-secondary px-3 px-lg-4 me-3">
+                            <i class="bx bx-edit fs-xl me-xl-2"></i>
+                            <span class="d-none d-xl-inline">Modifier vos information</span>
+                            
+                          </a>
+                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">Update Image</button>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                          
+                          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  
+                                  
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <!-- Add any additional footer content here if needed -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+     <section class="container pt-5">
+      <div class="row">
+        <button type="button" class="btn btn-icon btn-light bg-white btn-sm border rounded-circle shadow-sm position-absolute bottom-0 end-0 mt-4" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Change picture">
+          <i class="bx bx-refresh"></i>
+        </button>
+        <!-- Sidebar (User info + Account menu) -->
+        <aside class="col-lg-3 col-md-4 border-end pb-5 mt-n5">
+          <div class="position-sticky top-0" >
+            <div class="text-center pt-5">
+             
+
+              <mat-nav-list  >
+                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="users" tabindex="0" >  Gestion utilisateurs</a>
+                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="h">  Demande </a>
+
+              </mat-nav-list>
+              </div>
+            </div>
+        </aside>
+    
+        <div class="col-lg-9 col-md-8">
+          <router-outlet></router-outlet>
+          
+          <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
+            <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
+                <h1 class="h2 pt-xl-1 pb-3"></h1>
+          
+          </div>
+        </div>
+    
+    <footer class="footer pt-5 pb-4 pb-lg-5 mt-4" style="background-color: #002148">
+      <div class="container text-center pt-lg-3">
+         <div class="navbar-brand justify-content-center text-dark mb-2 mb-lg-4">
+            <img src="assets/logo_stb.png" class="me-2" width="60" alt="Silicon">
+            <span class="fs-4">STB 4 All</span>
+         </div>
+         <ul class="nav justify-content-center pt-3 pb-4 pb-lg-5">
+            <li class="nav-item"><a href="stb_ebank.html#top" class="nav-link">Acceuil</a></li>
+            <li class="nav-item"><a href="stb_ebank.html#services" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="stb_ebank.html#retail" class="nav-link">Retail</a></li>
+            <li class="nav-item"><a href="stb_ebank.html#corporate" class="nav-link">Corporate</a></li>
+            <li class="nav-item"><a href="stb_ebank.html#ccm" class="nav-link">Comment ça marche</a></li>
+            <li class="nav-item"><a href="stb_ebank.html#top" class="nav-link">Nos Offres</a></li>
+         </ul>
+         <div class="d-flex justify-content-center pt-4 mt-lg-3">
+            <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-facebook mx-2">
+            <i class="bx bxl-facebook"></i>
+            </a>
+            <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-instagram mx-2">
+            <i class="bx bxl-instagram"></i>
+            </a>
+            <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-twitter mx-2">
+            <i class="bx bxl-twitter"></i>
+            </a>
+            <a href="landing-mobile-app-showcase-v1.html#" class="btn btn-icon btn-secondary btn-youtube mx-2">
+            <i class="bx bxl-youtube"></i>
+            </a>
+         </div>
+      </div>
+   </footer>

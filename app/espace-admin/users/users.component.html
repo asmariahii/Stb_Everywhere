@@ -1,0 +1,13 @@
+<table>
+    <tr>
+      <th>Nom</th>
+      <th>Email</th>
+      <!-- Ajoutez d'autres colonnes pour afficher plus d'informations -->
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{ user.nom }}</td>
+      <td>{{ user.email }}</td>
+      <!-- Utilisez les propriétés appropriées pour afficher les autres informations -->
+    </tr>
+  </table>
+  

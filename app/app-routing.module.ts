@@ -23,6 +23,8 @@ const routes: Routes = [
   
   
   { path: 'login', loadChildren: () => import('./homepage/login/login.module').then(m => m.LoginModule) },
+  
+  { path: 'espace-admin', loadChildren: () => import('./espace-admin/espace-admin.module').then(m => m.EspaceAdminModule) },
 
 
 ];

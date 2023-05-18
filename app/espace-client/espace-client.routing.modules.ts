@@ -18,7 +18,8 @@ const routes: Routes = [
         {path:'details/:id',component:AccountDetailsComponent},
         {path:'cartes',component:CartesComponent},
         {path:'CardForm',component:CardFormComponent},
-        {path:'ChequeForm',component:ChequeFormComponent}
+        {path:'ChequeForm',component:ChequeFormComponent},
+        
       ]
   }
 ];
