@@ -1,13 +1,170 @@
-<table>
-    <tr>
-      <th>Nom</th>
-      <th>Email</th>
-      <!-- Ajoutez d'autres colonnes pour afficher plus d'informations -->
-    </tr>
-    <tr *ngFor="let user of users">
-      <td>{{ user.nom }}</td>
-      <td>{{ user.email }}</td>
-      <!-- Utilisez les propriétés appropriées pour afficher les autres informations -->
-    </tr>
+  
+
+
+  
+
+
+<div class="py-2">
+  <button type="button" class="btn btn-primary ps-4" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+    <i class="bx bx-plus fs-xl me-2"></i>
+    Ajouter un compte
+  </button>
+</div>
+
+<div class="modal fade" #addAccountModalRef id="addAccountModal" tabindex="-1" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #f="ngForm" (ngSubmit)="register(f)">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeRegistrationForm()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="flName">Nom et Prénom</label>
+            <input type="text" class="form-control" id="flName" name="flName" #flName="ngModel" ngModel required
+              [class.is-invalid]="flName.touched && flName.invalid">
+            <div class="invalid-feedback">
+              <div *ngIf="flName.errors?.['required'] && flName.touched">Le nom et prénom sont obligatoires.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Numéro de téléphone</label>
+            <input type="tel" class="form-control" id="telephone" name="telephone" #telephone="ngModel" ngModel pattern="^\+216[0-9]{7,8}$" required
+              [class.is-invalid]="telephone.touched && telephone.invalid">
+            <div class="invalid-feedback">
+              <div *ngIf="telephone.errors?.['required'] && telephone.touched">Le numéro de téléphone est obligatoire.</div>
+              <div *ngIf="telephone.errors?.['pattern'] && telephone.touched">Le numéro de téléphone doit être au format +216xxxxxxxx ou +216xxxxxxxxx.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cin">CIN</label>
+            <input type="text" class="form-control" id="cin" name="cin" #cin="ngModel" ngModel pattern="^\d{8}$" required
+              [class.is-invalid]="cin.touched && cin.invalid">
+            <div class="invalid-feedback">
+              <div *ngIf="cin.errors?.['required'] && cin.touched">Le numéro de carte d'identité tunisienne est obligatoire.</div>
+              <div *ngIf="cin.errors?.['pattern'] && cin.touched">Le numéro de carte d'identité tunisienne doit être composé de 8 chiffres.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Région</label>
+            <select class="form-control" id="region" name="region" #region="ngModel" ngModel required
+            [class.is-invalid]="region.touched && region.invalid">
+              <option value="" disabled selected>Choisissez la région</option>
+              <option value="Tunis">Tunis</option>
+              <option value="Ariana">Ariana</option>
+              <option value="Ben Arous">Ben Arous</option>
+              <!-- Ajoutez d'autres options pour les régions de la Tunisie -->
+            </select>
+            <div class="invalid-feedback">
+            <div *ngIf="region.errors?.['required'] && region.touched">Veuillez choisir une région.</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="accountType">Choisissez le type de compte :</label>
+            <select class="form-control" id="accountType" name="accountType" #accountType="ngModel" ngModel required
+              [class.is-invalid]="accountType.touched && accountType.invalid">
+              <option value="" disabled selected>Choisissez le type de compte</option>
+              <option value="epargne">Compte épargne</option>
+              <option value="chequier">Compte chéquier</option>
+            </select>
+            <div class="invalid-feedback">
+              <div *ngIf="accountType.errors?.['required'] && accountType.touched">Veuillez choisir un type de compte.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" #email="ngModel" ngModel required email
+              [class.is-invalid]="email.touched && email.invalid">
+            <div class="invalid-feedback">
+              <div *ngIf="email.errors?.['required'] && email.touched">L'e-mail est obligatoire.</div>
+              <div *ngIf="email.errors?.['email'] && email.touched">L'e-mail doit être au format valide.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" #password="ngModel" ngModel required minlength="8"
+              [class.is-invalid]="password.touched && password.invalid">
+            <div class="invalid-feedback">
+              <div *ngIf="password.errors?.['required'] && password.touched">Le mot de passe est obligatoire.</div>
+              <div *ngIf="password.errors?.['minlength'] && password.touched">Le mot de passe doit contenir au moins 8 caractères.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" #confirmPassword="ngModel" ngModel required minlength="8"
+              [class.is-invalid]="confirmPassword.touched && confirmPassword.invalid">
+            <div class="invalid-feedback">
+              <div *ngIf="confirmPassword.errors?.['required'] && confirmPassword.touched">Le champ de confirmation du mot de passe est obligatoire.</div>
+              <div *ngIf="confirmPassword.errors?.['minlength'] && confirmPassword.touched">Le champ de confirmation du mot de passe doit contenir au moins 8 caractères.</div>
+              <div *ngIf="password.value !== confirmPassword.value && confirmPassword.touched">Les mots de passe ne correspondent pas.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<table mat-table [dataSource]="users" class="mat-table">
+    <ng-container matColumnDef="flName">
+      <th mat-header-cell *matHeaderCellDef>Nom</th>
+      <td mat-cell *matCellDef="let user">{{ user.flName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="accountType">
+      <th mat-header-cell *matHeaderCellDef>Type de compte</th>
+      <td mat-cell *matCellDef="let user">{{ user.accountType }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="rib">
+      <th mat-header-cell *matHeaderCellDef>Numéro de RIB</th>
+      <td mat-cell *matCellDef="let user">
+        <span>{{ user.rib }}</span> <!-- Affiche le numéro de RIB -->
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef>État du compte</th>
+      <td mat-cell *matCellDef="let user">{{ user.isActive ? 'Activé' : 'Désactivé' }}</td>
+    </ng-container>
+    
+    <!-- Nouvelle colonne pour les actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-button color="primary" (click)="activateAccount(user)" [disabled]="user.isActive">Activer</button>
+        <button mat-button color="warn" (click)="deactivateAccount(user)" [disabled]="!user.isActive">Désactiver</button>
+      </td>
+    </ng-container>
+    
+    <!-- Ligne d'en-tête du tableau -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    
+    <!-- Lignes du tableau -->
+    <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
   </table>
+
+ 
+
+  <div>
+    <h2>Répartition des utilisateurs par type de compte</h2>
+
+    
+      <canvas #userChart style="background-color: rgb(222, 222, 243);"></canvas>
+    
+      </div>
   

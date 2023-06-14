@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import * as Chart from 'chart.js';
+
 
 interface Account {
   id: string;
@@ -16,74 +19,112 @@ interface Account {
   styleUrls: ['./account-details.component.css']
 })
 export class AccountDetailsComponent implements OnInit {
-  Account: Account[] = [
-    {
-      "id": "1",
-      "dateOperation": "01/02/2022",
-      "Operation": "Retrait DAB",
-      "typeOperation": "Retrait DAB ATM",
-      "Montant": "200 TND",
-      "reference": "FT23087XL8G "
-    },
-    {
-      "id": "1",
-      "dateOperation": "01/02/2023",
-      "Operation": "Prélèvement",
-      "typeOperation": "Prélèvement",
-      "Montant": "100 TND",
-      "reference": "FT23087XL8G "
-    },
-    {
-      "id": "2",
-      "dateOperation": "01/02/2022",
-      "Operation": "Virement",
-      "typeOperation": "Virement",
-      "Montant": "100",
-      "reference": "FT23087XL8G "
-    }
-
-  ];
-
-  filteredAccount: Account[] = [];
-
+  
   startDate: string = '';
   endDate: string = '';
+  transactionDate: string = '';
+  transactionOperation: string = '';
+  transactionType: string = '';
+  transactionReference: string = '';
+  transactionAmount: number | null = null;
+  filteredAccount: Account[] = [];
 
-  sub: any;
-  id: any;
+  constructor(private firestore: AngularFirestore, private route: ActivatedRoute) {}
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    console.log('Hi constructor')
+  ngOnInit() {
+    this.fetchTransactions();
   }
 
-  ngOnInit(): void {
-    console.log('Hi OnInit')
-    this.sub = this.activatedRoute.params.subscribe(params => {
-      this.id = params['id']
-      console.log(this.id)
-    })
-
-    // Filter accounts by id
-    let accountRep: Account[] = [];
-    this.Account.forEach(element => {
-      if (element.id === this.id) {
-        accountRep.push(element);
+  fetchTransactions() {
+    const userConnect = localStorage.getItem("userConnect");
+  
+    if (userConnect) {
+      this.firestore.collection("users").doc(userConnect).collection("transactions")
+        .valueChanges()
+        .subscribe(transactions => {
+          this.filteredAccount = transactions.map(transaction => transaction as Account);
+  
+          // Création du graphique des transactions
+          this.createTransactionChart();
+        });
+    }
+  }
+  createTransactionChart() {
+    const transactionDates = this.filteredAccount.map(transaction => transaction.dateOperation);
+    const transactionOperations = this.filteredAccount.map(transaction => Number(transaction.Montant));
+  
+    const chartElement = document.getElementById('transactionChart') as HTMLCanvasElement;
+    const ctx = chartElement.getContext('2d');
+  
+    if (ctx) {
+      new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: transactionDates,
+        datasets: [{
+          label: 'Transactions',
+          data: transactionOperations,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        // Spécifiez vos options de configuration du graphique ici
       }
     });
-
-    this.filteredAccount = accountRep;
   }
-
-  filterByPeriod(period: string) {
-    this.filteredAccount = this.Account.filter(c => c.dateOperation === period);
   }
 
   filterByDate() {
-    this.filteredAccount = this.Account.filter(c => {
-      const date = new Date(c.dateOperation);
-      const startDate = new Date(this.startDate);
-      const endDate = new Date(this.endDate);
-      return date >= startDate && date <= endDate;
-    });
+    // Récupérer l'ID du compte à partir des paramètres de l'URL
+    const accountId = this.route.snapshot.paramMap.get('id');
+
+    // Logique pour filtrer les transactions par date
+    // Utilisez les valeurs de startDate et endDate pour effectuer la requête Firestore
+    if (this.startDate && this.endDate && accountId) {
+      this.firestore.collection<Account>('accounts')
+        .doc(accountId)
+        .collection('transactions', ref => ref.where('dateOperation', '>=', this.startDate).where('dateOperation', '<=', this.endDate))
+        .valueChanges()
+        .subscribe(transactions => {
+          // Traitez les transactions filtrées ici
+          console.log(transactions);
+        });
+    }
   }
+  
+  addTransaction() {
+    const transaction: Account = {
+      id: '', // Vous pouvez générer un ID unique ici si nécessaire
+      dateOperation: this.transactionDate,
+      Operation: this.transactionOperation,
+      typeOperation: this.transactionType,
+      reference: this.transactionReference,
+Montant: this.transactionAmount !== null ? this.transactionAmount.toString() : '',
+    };
+  
+    const userConnect = localStorage.getItem("userConnect");
+  
+    if (userConnect) {
+      this.firestore.collection("users").doc(userConnect).collection("transactions").add(transaction)
+        .then(() => {
+          // La transaction a été ajoutée avec succès
+          // Réinitialisez les valeurs des champs du formulaire
+          this.transactionDate = '';
+          this.transactionOperation = '';
+          this.transactionType = '';
+          this.transactionReference = '';
+          this.transactionAmount = null;
+
+          // Récupérer les dernières transactions
+          this.fetchTransactions();
+        })
+        .catch((error) => {
+          // Une erreur s'est produite lors de l'ajout de la transaction
+          console.error('Error adding transaction: ', error);
+        });
+    }
+  }
+  
 }

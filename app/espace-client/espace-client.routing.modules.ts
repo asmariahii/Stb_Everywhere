@@ -15,7 +15,7 @@ const routes: Routes = [
     children:[
         {path:'account',component:RequestAccountComponent,},
         {path:'edit',component:EditAccountComponent},
-        {path:'details/:id',component:AccountDetailsComponent},
+        {path:'details',component:AccountDetailsComponent},
         {path:'cartes',component:CartesComponent},
         {path:'CardForm',component:CardFormComponent},
         {path:'ChequeForm',component:ChequeFormComponent},

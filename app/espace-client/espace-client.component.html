@@ -1,6 +1,51 @@
 <body 
    
    style="background-color: #003d86">
+   <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
+   <meta name="keywords" content="bootstrap, business, creative agency, mobile app showcase, saas, fintech, finance, online courses, software, medical, conference landing, services, e-commerce, shopping cart, multipurpose, shop, ui kit, marketing, seo, landing, blog, portfolio, html5, css3, javascript, gallery, slider, touch, creative">
+   <meta name="author" content="Createx Studio">
+   <!-- Viewport -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Favicon and Touch Icons -->
+   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+   <link rel="manifest" href="assets/favicon/site.webmanifest">
+   <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#6366f1">
+   <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+   <meta name="msapplication-TileColor" content="#080032">
+   <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+   <meta name="theme-color" content="#ffffff">
+   <!-- Vendor Styles -->
+   <!-- Main Theme Styles + Bootstrap -->
+   
+   <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1000);
+      };
+    })();
+ </script>
+   <div class="page-loading active">
+    <div class="page-loading-inner">
+       <div class="page-spinner"></div>
+       <span>Chargement...</span>
+    </div>
+ </div>
+ <script>
+  let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+  if (mode !== null && mode === 'dark') {
+    root.classList.add('dark-mode');
+  } else {
+    //root.classList.remove('dark-mode');
+    root.classList.add('dark-mode');
+  }
+</script>
    
       <!-- Google Tag Manager (noscript)-->
       <noscript>
@@ -38,7 +83,7 @@
                <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
-               <button (click)="logout()" type="button" class="btn btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modalId">
+               <button (click)="logout()" type="button" class="btn btn-info rounded-pill" >
                 Logout
                </button>
 
@@ -64,19 +109,51 @@
                         </h2>
                         <p>Telephone:{{ dataProfile.telephone}}</p>
                         <p>Email : {{ dataProfile.email}}</p>
-                        <p>adresse:{{ dataProfile.adresse}}</p>       
-                        <div class="d-flex">
-                          <a href="" class="btn btn-outline-secondary px-3 px-lg-4 me-3">
+                        <p>adresse:{{ dataProfile.region}}</p> 
+                        <p>rib:{{ dataProfile.rib}}</p>      
+                        <div class="d-flex" >
+                          <a href="#" class="btn btn-outline-secondary px-3 px-lg-4 me-3" data-bs-toggle="modal"
+                            data-bs-target="#modalId">
                             <i class="bx bx-edit fs-xl me-xl-2"></i>
-                            <span class="d-none d-xl-inline">Modifier vos information</span>
-                            
+                            <span class="d-none d-xl-inline">Modifier vos informations</span>
                           </a>
+                            
+                          <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Modifier vos informations</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <!-- Your form goes here -->
+                                  <form>
+                                    <div class="mb-3">
+                                      <label for="telephone" class="form-label">Téléphone</label>
+                                      <input type="text" class="form-control" id="telephone" [(ngModel)]="dataProfile.telephone"
+                                        name="telephone">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="adresse" class="form-label">Adresse</label>
+                                      <input type="text" class="form-control" id="adresse" [(ngModel)]="dataProfile.region" name="adresse">
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary" (click)="saveProfile()">Sauvegarder</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
                             <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">Update Image</button>
                           </div>
                           </div>
                           </div>
                           </div>
                           </div>
+                          
                           
                           <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -111,21 +188,30 @@
         </button>
         <!-- Sidebar (User info + Account menu) -->
         <aside class="col-lg-3 col-md-4 border-end pb-5 mt-n5">
-          <div class="position-sticky top-0" >
+          <div class="position-sticky top-0">
             <div class="text-center pt-5">
-             
-
-              <mat-nav-list  >
-                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="account" tabindex="0" (click)="hideCode()">  Consultation compte</a>
-                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="h">  Compte TF BANK</a>
-                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="cartes" tabindex="0" (click)="hideCode()">  Mes Cartes</a>
-                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="ChequeForm"> Demande Chéquier</a>
-                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="CardForm" tabindex="0" (click)="hideCode()">  Demande d'une carte bancaire</a>
-                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="j">  Fiche KYC</a>
-              </mat-nav-list>
+              <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3"></div>
+              <div id="account-menu" class="list-group list-group-flush d-md-block collapse" style="">
+                <a class="list-group-item list-group-item-action d-flex align-items-center text-white" mat-list-item routerLinkActive="active" routerLink="account">
+                  <span style="color: white;">Consultation Compte</span>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="cartes">
+                  <span style="color: white;">Mes Cartes</span>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="CardForm">
+                  <span style="color: white;">   Demande d'une carte bancaire
+                  </span>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex align-items-center" mat-list-item routerLinkActive="active" routerLink="ChequeForm">
+                  <span style="color: white;">                  Demande Chéquier
+                  </span>
+                </a>
               </div>
             </div>
+          </div>
         </aside>
+        
+        
     
         <div class="col-lg-9 col-md-8">
           <router-outlet></router-outlet>
@@ -133,9 +219,7 @@
           <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
             <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
                 <h1 class="h2 pt-xl-1 pb-3"></h1>
-          <div  class="col-12" *ngIf="showCode" _ngcontent-hjx-c60="" class="col-12"><h1 _ngcontent-hjx-c60="" class="pb-4">Mes Services</h1>
-            <div _ngcontent-hjx-c60="" class="row row-cols-1 row-cols-md-2">
-              <div _ngcontent-hjx-c60="" routerlink="RequestAccount" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 me-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/happy.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Consultation compte <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">En un simple clic, vous pouvez ouvrir différents types de comptes&nbsp;bancaires selon votre besoin et en toute sécurité à distance, soit via votre ordinateur, smartphone ou tablette !&nbsp; </p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestAccountTFB" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 me-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/compte.png" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Etudiant en France :Pack Student TF BANK <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Le Pack Student TFBANK est un pack offert en collaboration avec la STB et TFBANK dédiés aux étudiants Tunisiens en France âgés entre 18 et 26 ans </p></div></a></div><!----><div _ngcontent-hjx-c60="" routerlink="RequestAccountEmployeeTFB" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 me-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/compte.png" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Employee en France :Pack Elyssa TF BANK <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Le Pack Elyssa TF BANK est un pack offert en collaboration avec la STB et TFBANK dédiés aux salariés Tunisiens entre 18 ans et 60 ans ayant décroché un CDI en France. </p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestAccount" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/cashback.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Demande wallet <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Faciles à utiliser, les wallets sont des portefeuilles électroniques vous permettent d’effectuer des paiements, des transferts et des retraits sans cartes. Vos informations de paiement sont enregistrées de façon sécurisée. Ainsi, votre argent est protégé même en cas de perte ou de vol de votre smartphone. Cliquez ici pour demander votre wallet dès maintenant !&nbsp;</p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestCheck" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/tasks.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Demande chéquier&nbsp; <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Vous possédez un compte bancaire et vous souhaitez disposer d'un carnet de chèques. Vous pouvez passer votre demande en toute&nbsp;sécurité auprès de chez-vous,&nbsp;En un simple clic ! </p></div></a></div><div _ngcontent-hjx-c60="" routerlink="RequestCard" class="col-md-6 col-xl-6 col-xxl-6 col-sm-12 col-xs-12 py-4 my-2 my-sm-3" tabindex="0"><a _ngcontent-hjx-c60="" class="card card-hover h-100 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2"><div _ngcontent-hjx-c60="" class="card-body pt-3"><div _ngcontent-hjx-c60="" class="d-inline-block bg-white shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-3"><img _ngcontent-hjx-c60="" src="assets/img/payments.svg" width="40" alt="Icon" class="d-block m-1"></div><h2 _ngcontent-hjx-c60="" class="h4 d-inline-flex align-items-center"> Demande d'une carte bancaire&nbsp; <i _ngcontent-hjx-c60="" class="bx bx-right-arrow-circle text-primary fs-3 ms-2"></i></h2><p _ngcontent-hjx-c60="" class="anss-sm text-body mb-0">Vous souhaitez une solution de paiement et de retrait pratique et moderne ?&nbsp; c'est simple, il suffit d'initier votre demande de carte bancaire aupres de chez vous&nbsp;&nbsp;en toute securité&nbsp;! </p></div></a></div></div></div>
+          
         </div>
           </div>
         </div>
@@ -170,3 +254,4 @@
          </div>
       </div>
    </footer>
+   

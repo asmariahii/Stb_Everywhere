@@ -39,4 +39,32 @@ form {
   button[type="submit"]:hover {
     background-color: #007acc;
   }
+  .card-message {
+    background-color: #1c0f54;
+    padding: 16px;
+    border-radius: 4px;
+  }
+  
+  .card-message p {
+    margin: 0;
+    font-size: 16px;
+    color: blue;
+  }
+  .success-card {
+    background-color: rgb(231, 230, 238);
+    color: rgb(69, 42, 109);
+  }
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+  }
+  
+  .card {
+    background-color: black;
+    color: white;
+  }
+  
+  
   

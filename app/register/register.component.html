@@ -20,11 +20,26 @@
                 <mat-error *ngIf="telephone.errors?.['required'] && telephone.touched">Le numéro de téléphone est obligatoire.</mat-error>
                 <mat-error *ngIf="telephone.errors?.['pattern'] && telephone.touched">Le numéro de téléphone doit être au format +216xxxxxxxx ou +216xxxxxxxxx</mat-error>
               </mat-form-field>
-  
+
               <mat-form-field appearance="fill">
-                <input matInput placeholder="Adresse" name="adresse" #adresse="ngModel" ngModel required>
-                <mat-error *ngIf="adresse.errors?.['required'] && adresse.touched">Le champ adresse est obligatoire.</mat-error>
+                <mat-label>CIN</mat-label>
+                <input matInput type="text" placeholder="Numéro de carte d'identité tunisienne" name="cin" #cin="ngModel" ngModel pattern="^\d{8}$" required>
+                <mat-error *ngIf="cin.errors?.['required'] && cin.touched">Le numéro de carte d'identité tunisienne est obligatoire.</mat-error>
+                <mat-error *ngIf="cin.errors?.['pattern'] && cin.touched">Le numéro de carte d'identité tunisienne doit être composé de 8 chiffres.</mat-error>
               </mat-form-field>
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Région</mat-label>
+                <select matNativeControl name="region" #region="ngModel" ngModel required>
+                  <option value="" disabled selected>Choisissez la région</option>
+                  <option value="Tunis">Tunis</option>
+                  <option value="Ariana">Ariana</option>
+                  <option value="Ben Arous">Ben Arous</option>
+                  <!-- Ajoutez d'autres options pour les régions de la Tunisie -->
+                </select>
+                <mat-error *ngIf="region.errors?.['required'] && region.touched">Veuillez choisir une région.</mat-error>
+              </mat-form-field>
+              
   
               <mat-form-field appearance="fill">
                 <mat-label>Choisissez le type de compte :</mat-label>

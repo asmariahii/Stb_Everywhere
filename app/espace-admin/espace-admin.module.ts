@@ -10,12 +10,26 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersComponent } from './users/users.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { DemandeChequeComponent } from './demande-cheque/demande-cheque.component';
+import { DemandeCarteComponent } from './demande-carte/demande-carte.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MessagingService } from '../service/messaging.service';
+
 
 
 @NgModule({
   declarations: [
     EspaceAdminComponent,
-    UsersComponent
+    UsersComponent,
+    DemandeChequeComponent,
+    DemandeCarteComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +40,23 @@ import { UsersComponent } from './users/users.component';
     MatDividerModule,
     MatListModule,
     MatIconModule,
+    MatTableModule,
+    MatSortModule,
+    AngularFirestoreModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSnackBarModule, // Ajoutez cette ligne pour importer le module MatSnackBar
+    
+
+    
+    
+
+    
+  ],
+  providers: [MessagingService,
+    
   ]
+
+  
 })
 export class EspaceAdminModule { }

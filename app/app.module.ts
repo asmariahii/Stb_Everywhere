@@ -30,6 +30,9 @@ import { AuthService } from './shared/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+
 
 
 
@@ -43,6 +46,8 @@ import { MatInputModule } from '@angular/material/input';
     FooterComponent,
     
     RegisterComponent,
+    
+         
     
   ],
   imports: [
@@ -70,6 +75,9 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
+    MatTableModule,
+    AngularFireMessagingModule
+
 
 
 

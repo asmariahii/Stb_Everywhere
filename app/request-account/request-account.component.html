@@ -1,75 +1,84 @@
-
-
-
-                <!-- Account details -->
-                <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
-                    <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
-                        <h1 class="h2 pt-xl-1 pb-3"></h1>
-
-                        <!-- compte special -->
-                        <!-- <div _ngcontent-avu-c59="" class="card border-0 shadow-sm overflow-hidden mb-4 p-0">
-                            <div _ngcontent-avu-c59="" class="row g-0">
-                                <div _ngcontent-avu-c59="" class="col-8">
-                                    <div _ngcontent-avu-c59="" class="card-body">
-                                        <h2 _ngcontent-avu-c59="" class="h4 pb-1 mb-2"><a _ngcontent-avu-c59="">COMPTES
-                                                CHEQUES</a></h2>
-                                        <p _ngcontent-avu-c59="" class="m-0">RIB : 10004034514190278816</p>
-                                    </div>
-                                </div>
-                                <div _ngcontent-avu-c59="" class="col-4 selfCenter text-center textShadow"
-                                    style="color: green;"><b _ngcontent-avu-c59=""><span _ngcontent-avu-c59=""
-                                            class="text-bold" style="font-size: 30px;"> 1000.000 </span> TND</b></div>
-                                
-                            </div>
-                        </div> -->
-<div class="w-100" >
-    <div _ngcontent-avu-c59="" class="card border-0 shadow-sm overflow-hidden mb-4 p-0">
-        <div _ngcontent-avu-c59="" class="row g-0">
-            <div _ngcontent-avu-c59="" class="col-8">
-                <div _ngcontent-avu-c59="" class="card-body">
-                    
-                    <h2 _ngcontent-avu-c59="" class="h4 pb-1 mb-2">
-                        <a class="m-0" routerLink="/details/" >Compte {{ dataProfile.accountType}}</a>
-                    </h2>
-                    <p _ngcontent-avu-c59="" class="m-0">RIB : {{ dataProfile.rib}}  </p>
-                </div>
-            </div><!---->
-            <div _ngcontent-avu-c59="" class="col-4 selfCenter text-center textShadow"
-                style="color: green;"><b _ngcontent-avu-c59="">{{ dataProfile.solde}}<span _ngcontent-avu-c59=""
-                        class="text-bold" style="font-size: 30px;"> </span> TND</b></div>
-                        
-            <!---->
+<div class="py-2">
+    <button type="button" class="btn btn-primary ps-4" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+      <i class="bx bx-plus fs-xl me-2"></i>
+      Ajouter un compte
+    </button>
+  </div>
+  
+  <div class="modal fade" id="addAccountModal" tabindex="-1" aria-labelledby="addAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addAccountModalLabel">Ajouter un compte</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <form #accountForm="ngForm" (ngSubmit)="submitAccountForm(accountForm)">
+            <div class="form-group">
+              <label for="accountType">Account Type</label>
+              <select id="accountType" class="form-control" name="accountType" required [(ngModel)]="newAccount.accountType">
+                <option value="" disabled selected>Choisir un type de compte</option>
+                <ng-container *ngIf="dataProfile.accountType === 'epargne'">
+                  <option value="chequier">Compte Chèque</option>
+                </ng-container>
+                <ng-container *ngIf="dataProfile.accountType === 'chequier'">
+                  <option value="epargne">Compte Epargne</option>
+                </ng-container>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          
+        </div>
+      </div>
     </div>
-
-</div>
-
-
-
-
-
-
-                                                  
-
-
-
-
-
-
-                                                   
-                                               
-
-
-                                           
-
-                            
-
-
-
-                           
-
-
-
-
-
-   
+  </div>  
+    
+    <!-- Account details -->
+    <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
+      <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
+        <h1 class="h2 pt-xl-1 pb-3"></h1>
+    
+        <!-- Existing account -->
+        <div class="w-100">
+          <div _ngcontent-avu-c59="" class="card border-0 shadow-sm overflow-hidden mb-4 p-0">
+            <div _ngcontent-avu-c59="" class="row g-0">
+              <div _ngcontent-avu-c59="" class="col-8">
+                <div _ngcontent-avu-c59="" class="card-body">
+                  <h2 _ngcontent-avu-c59="" class="h4 pb-1 mb-2">
+                    <a class="m-0" routerLink="/details/">Compte {{ dataProfile.accountType }}</a>
+                  </h2>
+                  <p _ngcontent-avu-c59="" class="m-0">RIB: {{ dataProfile.rib }}</p>
+                </div>
+              </div>
+              <div _ngcontent-avu-c59="" class="col-4 selfCenter text-center textShadow" style="color: green;"><b _ngcontent-avu-c59="">{{ dataProfile.solde }}<span _ngcontent-avu-c59="" class="text-bold" style="font-size: 30px;"> TND</span></b>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+  
+  
+  
+  
+  
+  
+   <!-- Existing accounts -->
+   <div class="w-100">
+    <div class="card border-0 shadow-sm overflow-hidden mb-4 p-0" *ngFor="let account of userAccounts">
+      <div class="row g-0">
+        <div class="col-8">
+          <div class="card-body">
+            <h2 class="h4 pb-1 mb-2">
+              <a class="m-0" routerLink="/details/">Compte {{ account.accountType }}</a>
+            </h2>
+            <p class="m-0">RIB: {{ account.rib }}</p>
+  
+            
+          </div>
+        </div>
+        <div class="col-4 selfCenter text-center textShadow" style="color: green;">
+          <b>{{ account.solde }}<span class="text-bold" style="font-size: 30px;">TND</span></b>
+        </div>
+      </div>
+    </div>

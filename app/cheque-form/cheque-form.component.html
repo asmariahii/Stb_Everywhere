@@ -1,19 +1,41 @@
-<h2>Demande de chéquier</h2>
 
 
-<p *ngIf="messageSent">{{ message }}</p>
 
-<form *ngIf="Uid && !messageSent && !demandeEnCours" #chequeForm="ngForm" (ngSubmit)="onSubmit(chequeForm)">
-  <div>
-    <label for="nombreChequiers">Nombre de chéquiers</label>
-    <select name="nombreChequiers" id="nombreChequiers" [(ngModel)]="nombreChequiers" required>
-      <option value="" disabled>Choisissez le nombre de chéquiers</option>
-      <option *ngFor="let nombre of nombreChequiersOptions" [value]="nombre">{{ nombre }}</option>
-    </select>
+
+
+<div *ngIf="!messageSent && demandesUtilisateur.length > 0" class="center-container">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="assets/logo_stb.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Demande de chéquier en cours..</h5>
+      <div *ngFor="let demande of demandesUtilisateur">
+        <p class="card-text" >{{ demande.statut }}</p>
+      </div>
+    </div>
   </div>
-  
-  <button type="submit" [disabled]="messageSent">Envoyer la demande</button>
-</form>
+</div>
 
-<p *ngIf="Uid && !messageSent && demandeEnCours">Votre demande est : {{ dataProfile.demande}}</p>
+<!-- Rest of the code -->
 
+<div *ngIf="messageSent" class="center-container">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="assets/logo_stb.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Demande de chéquier</h5>
+      <p class="card-text">Votre demande de chéquier a été envoyée avec succès. Nous vous contacterons dès que possible pour vous informer de la suite des opérations.</p>
+    </div>
+  </div>
+</div>
+
+<div>
+  <form #form="ngForm" (ngSubmit)="AddDemandeCheque(form)">
+    <div class="form-group">
+      <label for="nombreChequier">Nombre de chéquiers</label>
+      <select class="form-control" id="nombreChequier" name="nombreChequier" [(ngModel)]="nombreChequier" required>
+        <option *ngFor="let option of nombreChequiersOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+  </form>
+</div>

@@ -5,14 +5,18 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/compat/storage';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 interface UserProfile {
   flName: string;
   image: string;
   telephone: string;
   email: string;
-  adresse: string;
+  region: string;
   uid:string;
+  rib:string;
+  accountType: string; // Déclaration de la variable accountType
 }
 
 @Component({
@@ -21,6 +25,11 @@ interface UserProfile {
   styleUrls: ['./espace-client.component.css']
 })
 export class EspaceClientComponent implements OnInit {
+  showForm: boolean = false;
+
+  infoForm: FormGroup;
+currentUser: any; // Variable pour stocker les données utilisateur actuelles
+
   isLoggedIn: boolean = false;
   isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches)
@@ -32,8 +41,10 @@ export class EspaceClientComponent implements OnInit {
     image: 'https://previews.123rf.com/images/salamatik/salamatik1801/salamatik180100019/92979836-ic%C3%B4ne-de-visage-anonyme-de-profil-personne-silhouette-grise-avatar-par-d%C3%A9faut-masculin-photo.jpg',
     telephone: '',
     email: '',
-    adresse: '',
-    uid:''
+    region: '',
+    uid:'',
+    rib:'',
+    accountType:''
   };
   name: string | undefined;
   successUpdate: boolean = false;
@@ -49,12 +60,18 @@ export class EspaceClientComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private fs: AngularFirestore,
     private router: Router,
-    private fst: AngularFireStorage
+    private fst: AngularFireStorage,
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
   ) {
     this.as.user.subscribe((user) => {
       if (user) {
         this.Uid = user.uid;
       }
+    });
+    this.infoForm = this.formBuilder.group({
+      telephone: '',
+      adresse: ''
     });
   }
 
@@ -66,11 +83,21 @@ export class EspaceClientComponent implements OnInit {
       this.dataProfile.image = data?.image ?? 'https://previews.123rf.com/images/salamatik/salamatik1801/salamatik180100019/92979836-ic%C3%B4ne-de-visage-anonyme-de-profil-personne-silhouette-grise-avatar-par-d%C3%A9faut-masculin-photo.jpg';
       this.dataProfile.telephone = data?.telephone ?? '';
       this.dataProfile.email = data?.email ?? '';
-      this.dataProfile.adresse = data?.adresse ?? '';
+      this.dataProfile.region = data?.region ?? '';
+
       this.dataProfile.uid = localStorage.getItem("userConnect") ?? ''; // Update the UID value with fallback
+      this.dataProfile.rib = data?.rib ?? '';
 
-      
+    });
+    
 
+    this.authService.getUser().subscribe(user => {
+      if (user) {
+        // Utilisateur connecté, redirection vers la consultation du compte actif
+        this.router.navigate(['account']); // Remplacez 'account' par le chemin de la consultation du compte actif
+      } else {
+        // Utilisateur déconnecté, restez sur la page actuelle
+      }
     });
   }
 
@@ -79,6 +106,25 @@ export class EspaceClientComponent implements OnInit {
   hideCode(): void {
     this.showCode = false;
   }
+  saveProfile() {
+    if (this.infoForm.valid) {
+      const updatedProfile = {
+        telephone: this.infoForm.value.telephone,
+        adresse: this.infoForm.value.adresse
+      };
+  
+      this.fs.collection("users").doc(this.dataProfile.uid).update(updatedProfile)
+        .then(() => {
+          console.log("Profile updated successfully!");
+          // Display a success message or redirect the user if needed
+        })
+        .catch((error) => {
+          console.error("Error updating profile:", error);
+          // Display an error message to the user
+        });
+    }
+  }
+  
 
   logout(): void {
     this.as.signOut();
@@ -120,6 +166,33 @@ export class EspaceClientComponent implements OnInit {
       });
     }
   }
+  saveInfo() {
+    if (this.infoForm.valid) {
+      const updatedInfo = {
+        telephone: this.infoForm.value.telephone,
+        adresse: this.infoForm.value.adresse
+      };
+  
+      this.fs.collection("users").doc(this.dataProfile.uid).update(updatedInfo)
+        .then(() => {
+          console.log("Informations mises à jour avec succès !");
+          // Afficher un message de succès ou rediriger l'utilisateur si nécessaire
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la mise à jour des informations :", error);
+          // Afficher un message d'erreur à l'utilisateur
+        });
+    }
+  }
+  
+  cancelInfo() {
+    // Réinitialiser les valeurs du formulaire avec les données utilisateur actuelles
+    this.infoForm.patchValue({
+      telephone: this.currentUser.telephone,
+      adresse: this.currentUser.adresse
+    });
+  }
+  
   
   
   
